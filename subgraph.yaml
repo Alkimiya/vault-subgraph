@@ -1,0 +1,25 @@
+specVersion: 0.0.4
+description: Vault Subgraph
+repository: https://github.com/alkimiya/vault-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SilicaVault
+    network: mainnet
+    source:
+      abi: SilicaVault
+      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE"
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - SilicaVault
+      abis:
+        - name: SilicaVault
+          file: ./abi/SilicaVault.sol/SilicaVault.json
+      eventHandlers:
+        - event: StartNextRound(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStartNextRound
+      file: ./src/SilicaVault.ts
