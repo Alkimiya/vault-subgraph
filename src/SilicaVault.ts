@@ -25,27 +25,3 @@ export function handleStartNextRound(event: StartNextRound): void {
     epochEntry.sharesWithdrawn = event.params.sharesWithdrawn;
     epochEntry.silicaVaultV1 = event.address.toHex();
 }
-  
-// export function handleOracleUpdate(event: OracleUpdate): void {
-//     let oracle = OracleMiningEntity.load(event.address.toHex());
-//     if (!oracle) {
-//       oracle = new OracleMiningEntity(event.address.toHex());
-//       oracle.save();
-//     }
-  
-//     let oracleMiningEntry = new OracleMiningEntryEntity(
-//       oracle.id + "-" + event.params.referenceDay.toHex()
-//     );
-//     oracleMiningEntry.referenceDay = event.params.referenceDay;
-//     oracleMiningEntry.referenceBlock = event.params.referenceBlock;
-//     oracleMiningEntry.hashrate = event.params.hashrate;
-//     oracleMiningEntry.reward = event.params.reward;
-//     oracleMiningEntry.fees = event.params.fees;
-//     oracleMiningEntry.difficulty = event.params.difficulty;
-  
-//     // set derived field
-//     oracleMiningEntry.oracle = event.address.toHex();
-  
-//     oracleMiningEntry.save();
-//   }
-  
