@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.35.0",
-    "@graphprotocol/graph-ts": "^0.27.0"
+    "@graphprotocol/graph-ts": "^0.27.0",
+    "@alkimiya/v1-silicavault-core": "github:Alkimiya/v1-silicavault-core"
   }
 }

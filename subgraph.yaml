@@ -18,7 +18,7 @@ dataSources:
         - SilicaVault
       abis:
         - name: SilicaVault
-          file: ./abi/SilicaVault.sol/SilicaVault.json
+          file: ./node_modules/@alkimiya/v1-silicavault-core/out/SilicaVault.sol/SilicaVault.json
       eventHandlers:
         - event: StartNextRound(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleStartNextRound
