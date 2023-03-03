@@ -24,4 +24,6 @@ export function handleStartNextRound(event: StartNextRound): void {
     epochEntry.rewardHeldAtWithdraw = event.params.rewardHeldAtWithdraw;
     epochEntry.sharesWithdrawn = event.params.sharesWithdrawn;
     epochEntry.silicaVaultV1 = event.address.toHex();
+
+    epochEntry.save();
 }
