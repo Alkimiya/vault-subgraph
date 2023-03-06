@@ -1,3 +1,4 @@
+import { BigInt } from "@graphprotocol/graph-ts";
 import {
     Epoch,
     Epoch as EpochEntity,
@@ -13,17 +14,27 @@ export function handleStartNextRound(event: StartNextRound): void {
         silicaVault.save();
     }
 
-    let epochEntry = new Epoch(event.params.currentRound.toString());
-    epochEntry.startTimestamp = event.block.timestamp;
-    epochEntry.roundEnd = event.params.roundEndDay;
-    epochEntry.roundSize = event.params.roundSize;
-    epochEntry.deposited = event.params.deposited;
-    epochEntry.sharePriceAtStart = event.params.sharePriceAtStart;
-    epochEntry.shareSupplyAtStart = event.params.shareSupplyAtStart;
-    epochEntry.paymentHeldAtWithdraw = event.params.paymentHeldAtWithdraw;
-    epochEntry.rewardHeldAtWithdraw = event.params.rewardHeldAtWithdraw;
-    epochEntry.sharesWithdrawn = event.params.sharesWithdrawn;
-    epochEntry.silicaVaultV1 = event.address.toHex();
+    // Store values for next epoch
+    let curEpochEntry = new Epoch(event.params.currentRound.toString());
+    curEpochEntry.startTimestamp = event.block.timestamp;
+    curEpochEntry.roundEnd = event.params.roundEndDay;
+    curEpochEntry.roundSize = event.params.roundSize;
+    curEpochEntry.deposited = event.params.deposited;
+    curEpochEntry.sharePriceAtStart = event.params.sharePriceAtStart;
+    curEpochEntry.shareSupplyAtStart = event.params.shareSupplyAtStart;
+    curEpochEntry.silicaVaultV1 = event.address.toHex();
+    curEpochEntry.save();
 
-    epochEntry.save();
+    // Update fields for previous epoch
+    let prevEpoch = event.params.currentRound.minus(new BigInt(1));
+    let prevEpochEntry = EpochEntity.load(prevEpoch.toString());
+    if (!prevEpochEntry) {
+        // handle null gracefully
+    } else {
+        prevEpochEntry.paymentHeldAtWithdraw = event.params.paymentHeldAtWithdraw;
+        prevEpochEntry.rewardHeldAtWithdraw = event.params.rewardHeldAtWithdraw;
+        prevEpochEntry.sharesWithdrawn = event.params.sharesWithdrawn;
+        prevEpochEntry.save();   
+    }
+
 }
