@@ -1,0 +1,29 @@
+"""
+InitParams
+LiveState
+"""
+
+type SilicaVault @entity {
+  id: ID!  # address
+  epochs: [Epoch!]! @derivedFrom(field: "silicaVaultV1")
+  terminated: Boolean
+}
+
+type Epoch @entity {
+  id: ID!  # epoch number
+  startTimestamp: BigInt!  # seconds since 1970 Jan 1
+  roundEnd: BigInt!  # days since 1970 Jan 1
+  roundSize: BigInt!
+  deposited: BigInt!
+  sharePriceAtStart: BigInt!
+  shareSupplyAtStart: BigInt!
+  paymentHeldAtWithdraw: BigInt  # can be null prior to withdraw
+  rewardHeldAtWithdraw: BigInt  # can be null prior to withdraw
+  sharesWithdrawn: BigInt  # can be null prior to withdraw
+  silicaVaultV1: SilicaVault!
+}
+
+# deposited (just so we're consistent w.r.t the phrases "deposit" vs "size")
+# to be only the new money deposited that round, and roundSize to include all
+# money (including money reinvested from previous rounds).
+# So it would actually be adminFee = deposited - (roundSize - prevRoundSize)
