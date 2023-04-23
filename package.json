@@ -1,0 +1,26 @@
+{
+  "name": "vault-subgraph",
+  "version": "0.1.0",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ alkimiya",
+    "create-local": "graph create --node http://localhost:8020/ alkimiya",
+    "remove-local": "graph remove --node http://localhost:8020/ alkimiya",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alkimiya"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "jq": "^1.7.2",
+    "matchstick-as": "^0.5.0",
+    "truffle": "^5.0.4",
+    "truffle-contract": "^4.0.5",
+    "truffle-hdwallet-provider": "^1.0.4"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.35.0",
+    "@graphprotocol/graph-ts": "^0.27.0",
+    "@alkimiya/v1-silicavault-core": "github:Alkimiya/v1-silicavault-core"
+  }
+}
