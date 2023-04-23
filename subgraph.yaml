@@ -22,4 +22,6 @@ dataSources:
       eventHandlers:
         - event: StartNextRound(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleStartNextRound
+        - event: ProcessWithdraws(uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleProcessWithdraws
       file: ./src/SilicaVault.ts
