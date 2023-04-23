@@ -20,7 +20,7 @@ dataSources:
         - name: SilicaVault
           file: ./node_modules/@alkimiya/v1-silicavault-core/out/SilicaVault.sol/SilicaVault.json
       eventHandlers:
-        - event: StartNextRound(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+        - event: StartNextRound(uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleStartNextRound
         - event: ProcessWithdraws(uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleProcessWithdraws
